@@ -99,10 +99,30 @@ ul li {
   font-weight: 900;
 }
 
+/* TABLE */
+table * {
+  border: 1px solid #111;
+  padding: .5em;
+}
+
+table thead {
+  background: silver;
+}
+
+table tbody td {
+  background: salmon;
+  color: ivory;
+}
+
+table tfoot {
+  background: salmon;
+}
+
 /* FOOTER AREA */
 footer {
-  background-color: rgb(177, 176, 176);
+  background-color: #ccc;
   padding: 16px 32px;
-  height: 70px;
+  padding-top: 32px;
+  height: 40px;
   text-align: center;
 }
