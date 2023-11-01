@@ -12,17 +12,56 @@
     <section class="page-heading">
       <h1>Welcome to Pat's Salmon Cookies</h1>
     </section>
+
     <nav>
       <a href="/cookie-stand/">Home</a>
       <a href="/cookie-stand/sales.html">Sales Data</a>
     </nav>
+
     <section class="salmon-image">
       <img src="img/salmon.png" alt="Salmon">
     </section>
   </header>
-  <main>
-    <section id="sales-list"></section>
 
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th>Locations</th>
+          <th>6am</th>
+          <th>7am</th>
+          <th>8am</th>
+          <th>9am</th>
+          <th>10am</th>
+          <th>11am</th>
+          <th>12am</th>
+          <th>1pm</th>
+          <th>2pm</th>
+          <th>3pm</th>
+          <th>4pm</th>
+          <th>5pm</th>
+          <th>6pm</th>
+          <th>7pm</th>
+          <th>Location Totals</th>
+        </tr>
+      </thead>
+
+      <tbody id="data">
+        <!-- SALES DATA RENDERS HERE .... -->
+      </tbody>
+
+      <tfoot>
+        <tr>
+          <td>
+
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <div id="root"></div>
+
+    <section id="sales-list"></section>
   </main>
   <footer>
     &copy; 2023 Pat's Salmon Cookies

@@ -1,19 +1,17 @@
 'use strict';
 
 // Define a class for location objects
-function Location(name, hoursOpen, contactInfo, location, minCustomers, maxCustomers, avgCookiesPerCustomer) {
-  this.name = name;
-  this.hoursOpen = hoursOpen;
-  this.contactInfo = contactInfo;
-  this.location = location;
-  this.minCustomers = minCustomers;
-  this.maxCustomers = maxCustomers;
-  this.avgCookiesPerCustomer = avgCookiesPerCustomer;
+class Location {
+  constructor(name, hoursOpen, contactInfo, location, minCustomers, maxCustomers, avgCookiesPerCustomer) {
+    this.name = name;
+    this.hoursOpen = hoursOpen;
+    this.contactInfo = contactInfo;
+    this.location = location;
+    this.minCustomers = minCustomers;
+    this.maxCustomers = maxCustomers;
+    this.avgCookiesPerCustomer = avgCookiesPerCustomer;
+  }
 }
-
-/* Location.prototype.genHourlySales = function([hours]) {;
-
-}; */
 
 // Define location objects using the Location class
 const seattle = new Location(
