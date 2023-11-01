@@ -11,6 +11,8 @@ function Location(name, hoursOpen, contactInfo, location, minCustomers, maxCusto
   this.avgCookiesPerCustomer = avgCookiesPerCustomer;
 }
 
+/* Create object to hold arrays of totals here */
+
 /* Location.prototype.genHourlySales = function([hours]) {;
 
 }; */
