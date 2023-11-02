@@ -3,16 +3,20 @@
   src: url(../fonts/Righteous-Regular.ttf);
 }
 
-h1,h2,h3 {
+h1,
+h2,
+h3 {
   font-family: Righteous;
 }
 
 body {
   height: 100%;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   padding: 8px 16px;
 }
 
@@ -63,7 +67,7 @@ header h1 {
 main {
   margin: 10px auto;
   padding: 16px;
-  max-width: 960px;
+  max-width: fit-content;
 }
 
 /* SECTIONS */
@@ -101,21 +105,109 @@ ul li {
 
 /* TABLE */
 table * {
-  border: 1px solid #111;
-  padding: .5em;
+  padding: 0.5em;
+  text-align: center;
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
 }
 
 table thead {
-  background: silver;
+  background: grey;
+  color: white;
 }
 
-table tbody td {
+table tbody {
   background: salmon;
-  color: ivory;
+  color: black;
 }
 
 table tfoot {
-  background: salmon;
+  background: grey;
+  text-align: center;
+}
+
+#tfoot-tr td,
+#thead-tr th,
+td.loc-totals {
+  border: none;
+  color: white;
+  background: grey;
+  width: max-content;
+  font-weight: 900;
+}
+
+.loc-name,
+.sales-per-hour {
+  border: 1px solid black;
+  text-align: left;
+  padding-left: 15px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* FORM */
+form {
+  text-align: center;
+}
+
+div.form-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+}
+
+.form-inline {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 30px 0;
+}
+
+.form-inline label {
+  margin: 5px 10px 5px 0;
+}
+
+.form-inline input {
+  vertical-align: middle;
+  margin: 5px 10px 5px 0;
+  padding: 5px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  width: 110px;
+}
+
+.form-inline button {
+  padding: 5px 5px;
+  border-radius: 5px;
+  background-color: dodgerblue;
+  border: 1px solid #ddd;
+  color: white;
+  cursor: pointer;
+}
+
+.form-inline button:hover {
+  background-color: royalblue;
+}
+
+@media (max-width: 800px) {
+  .form-inline input {
+    margin: 10px 0;
+  }
+
+  .form-inline {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 /* FOOTER AREA */

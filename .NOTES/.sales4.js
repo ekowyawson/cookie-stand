@@ -1,6 +1,6 @@
 'use strict';
 
-// const cl   = (input) => { console.log(input); };
+const cl   = (input) => { console.log(input); };
 let totals = new Array(14);
 totals.fill(0);
 
@@ -69,25 +69,20 @@ Location.prototype.renderTable = function() {
   const tableBody = document.getElementById('tbody');
   const locationRow  = document.createElement('tr');
   tableBody.appendChild(locationRow);
-  let strName = this.name.toString();
-  locationRow.id = strName.toLowerCase();
 
   let locationName = document.createElement('td');
-  locationName.textContent = strName;
+  locationName.textContent = this.name;
   locationRow.appendChild(locationName);
-  locationName.classList.add('loc-name');
 
   for (let i = 0; i < this.cookiesPerHour.length; i++) {
     const cookieSale = document.createElement('td');
     cookieSale.textContent = (this.cookiesPerHour[i]);
     locationRow.appendChild(cookieSale);
-    cookieSale.classList.add('sales-per-hour');
   }
 
   let locationTotal = document.createElement('td');
   locationTotal.textContent = this.dailyTotals;
   locationRow.appendChild(locationTotal);
-  locationTotal.classList.add('loc-totals');
 };
 
 /* RENDER TABLE FOOTER */
@@ -109,6 +104,7 @@ const renderTableFoot = (totals) => {
 Location.prototype.calculateSales = function (hours) {
   /* MATH FUNCTIONS */
   for(let hour = 0; hour < hours.length; hour++) {
+    /* MATH FUNCTIONS */
     const randomCustomers = Math.floor(
       Math.random() * (this.maxCustomers - this.minCustomers + 1) + this.minCustomers
     );
@@ -120,39 +116,74 @@ Location.prototype.calculateSales = function (hours) {
     this.cookiesPerHour.push(cookiesSold);
     this.dailyTotals += cookiesSold;
     totals[hour] += cookiesSold;
+
+    // Display the results on the page
+    /* const listItem       = document.createElement('li');
+    listItem.textContent = `${hour}: ${cookiesSold} cookies`;
+    locUl.appendChild(listItem);
+    salesList.appendChild(locUl); */
   }
 };
 
 /* ------------------- */
+
+// Get a reference to an HTML element with the id "sales-list"
+const salesList = document.getElementById('sales-list');
 const locations = [seattle, tokyo, dubai, paris, lima];
+
+// Define a function to generate hourly sales for a location
+function generateHourlySales(location, hours) {
+  const hourlySales          = [];
+  const locationHeader       = document.createElement('h2');
+  const locUl                = document.createElement('ul');
+  locationHeader.classList.add('location-header');
+  locationHeader.textContent = location.name;
+  salesList.appendChild(locationHeader);
+
+  for(let hour = 0; hour<hours.length;hour++) {
+    /* MATH FUNCTIONS */
+    const randomCustomers = Math.floor(
+      Math.random() * (location.maxCustomers - location.minCustomers + 1) + location.minCustomers
+    );
+    const cookiesSold     = Math.ceil(
+      randomCustomers * location.avgCookiesPerCustomer
+    );
+    hourlySales.push(cookiesSold);
+
+    location.cookiesPerHour.push(cookiesSold);
+    location.dailyTotals += cookiesSold;
+    totals[hour] += cookiesSold;
+
+    // Display the results on the page
+    const listItem       = document.createElement('li');
+    listItem.textContent = `${hour}: ${cookiesSold} cookies`;
+    locUl.appendChild(listItem);
+    salesList.appendChild(locUl);
+  }
+
+  // Calculate and display the total cookies sold for the day
+  const totalCookies  = hourlySales.reduce((a, b) => a + b, 0);
+  const totalUl       = document.createElement('ul');
+  const totalListItem = document.createElement('li');
+
+  totalUl.classList.add('total-sales');
+  totalListItem.textContent = `Total: ${totalCookies} cookies`;
+  totalUl.appendChild(totalListItem);
+  salesList.appendChild(totalUl);
+}
+
 // Loop through each location and generate their hourly sales
 locations.forEach(loc => {
   const hours     = [
     '6am','7am','8am','9am','10am','11am','12pm',
     '1pm','2pm','3pm','4pm','5pm','6pm','7pm'
   ];
+  // generateHourlySales(loc, hours);
   loc.calculateSales(hours);
   loc.renderTable();
 });
 
+let reducedTotals = totals.reduce((a,b)=> a+b, 0);
+
 renderTableFoot(totals);
-
-
-/* TESTS */
-
-/* let actionButton = document.getElementById('submit');
-
-actionButton.addEventListener('click', function(e) {
-  e.preventDefault();
-
-  let locName      = document.getElementById('location-name');
-  let minCustPerHr = document.getElementById('min-cust');
-  let maxCustPerHr = document.getElementById('max-cust');
-  let avgPerSale   = document.getElementById('avg-sale');
-
-  if (locName.value.toLowerCase() === 'seattle') {
-    cl('TRUEEEEEE');
-    let hideRow = document.getElementById('seattle');
-    hideRow.classList.add('hidden');
-  }
-}); */
+cl(reducedTotals);

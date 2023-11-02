@@ -14,6 +14,8 @@
     </section>
 
     <nav>
+      <!-- <a href="/">Home</a>
+      <a href="/sales.html">Sales Data</a> -->
       <a href="/cookie-stand/">Home</a>
       <a href="/cookie-stand/sales.html">Sales Data</a>
     </nav>
@@ -24,9 +26,29 @@
   </header>
 
   <main>
+
+    <div class="form-div">
+      <form class="form-inline"  action="#">
+        <label for="location-name">Location Name:</label>
+          <!--  -->
+          <input type="location-name" id="location-name" name="location-name">
+          <!--  -->
+          <label for="min-cust">Minimum Customers Per Hour</label>
+          <input type="number" id="min-cust" name="min-cust" min="0" max="11" />
+          <!--  -->
+          <label for="max-cust">Maximum Customers Per Hour</label>
+          <input type="number" id="max-cust" name="max-cust" min="0" max="11" />
+          <!--  -->
+          <label for="avg-sale">Average Cookies Per Sale</label>
+          <input type="text" id="avg-sale" name="avg-sale" />
+          <!--  -->
+          <button type="submit" id="submit">Click here to add!</button>
+      </form>
+    </div>
+
     <table>
       <thead>
-        <tr>
+        <tr id="thead-tr">
           <th>Locations</th>
           <th>6am</th>
           <th>7am</th>
@@ -46,20 +68,16 @@
         </tr>
       </thead>
 
-      <tbody id="data">
+      <tbody id="tbody">
         <!-- SALES DATA RENDERS HERE .... -->
       </tbody>
 
-      <tfoot>
-        <tr>
-          <td>
-
-          </td>
+      <tfoot id="tfoot">
+        <tr id="tfoot-tr">
+          <td>Hourly Totals For All Locations</td>
         </tr>
       </tfoot>
     </table>
-
-    <div id="root"></div>
 
     <section id="sales-list"></section>
   </main>
