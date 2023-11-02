@@ -1,9 +1,9 @@
-"use strict";
+'use strict';
 
 // Define a function to simplify console.log
-const cl = (input) => {
+/* const cl = (input) => {
   console.log(input);
-};
+}; */
 
 // Define an array of location objects
 const locations = [
@@ -74,7 +74,7 @@ function generateLocation(location) {
   // Set the heading text to the location's name
   locationHeader.textContent = location.name;
   locationList.appendChild(locationHeader);
-  
+
   // Generate list items for hours, contact info, and location
   generateList(`Hours Open: ${location.hoursOpen}`, locUl);
   generateList(`Contact Info: ${location.contactInfo}`, locUl);
