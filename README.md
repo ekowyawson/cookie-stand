@@ -2,10 +2,12 @@
 
 ## Table of Contents
 
-- [Description](#description)
-- [Features](#features)
-- [License](#license)
-- [Lighthouse](#lighthouse)
+- [Cookie Sales Report](#cookie-sales-report)
+  - [Table of Contents](#table-of-contents)
+  - [Description](#description)
+  - [Features](#features)
+  - [License](#license)
+  - [Lighthouse](#lighthouse)
 
 ## Description
 
@@ -24,4 +26,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Lighthouse
 
-!['Lighthouse Image'](img/lighthouse-lab6a.png)
+![Lighthouse Capture](img/lighthouse-lab6a.png)
