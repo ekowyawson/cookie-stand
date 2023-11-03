@@ -14,8 +14,8 @@
     </section>
 
     <nav>
-      <a href="/">Home</a>
-      <a href="/sales.html">Sales Data</a>
+      <a href="index.html">Home</a>
+      <a href="sales.html">Sales Data</a>
       <!-- <a href="/cookie-stand/">Home</a>
       <a href="/cookie-stand/sales.html">Sales Data</a> -->
     </nav>
@@ -28,21 +28,24 @@
   <main>
 
     <div class="form-div">
-      <form class="form-inline"  action="#">
-        <label for="location-name">Location Name:</label>
+      <form action="#" id="addLocationForm">
+        <fieldset class="form-inline">
+          <legend>Add a new store to the table!!!</legend>
+          <label for="location-name">Location Name:</label>
           <!--  -->
-          <input type="location-name" id="location-name" name="location-name">
+          <input type="location-name" id="location-name" name="location-name" required />
           <!--  -->
           <label for="min-cust">Minimum Customers Per Hour</label>
-          <input type="number" id="min-cust" name="min-cust" min="0" max="11" />
+          <input type="number" id="min-cust" name="min-cust" min="0" max="30" required />
           <!--  -->
           <label for="max-cust">Maximum Customers Per Hour</label>
-          <input type="number" id="max-cust" name="max-cust" min="0" max="11" />
+          <input type="number" id="max-cust" name="max-cust" min="1" max="60" required />
           <!--  -->
           <label for="avg-sale">Average Cookies Per Sale</label>
-          <input type="text" id="avg-sale" name="avg-sale" />
+          <input type="text" id="avg-sale" name="avg-sale" placeholder="4.5" required />
           <!--  -->
           <button type="submit" id="submit">Click here to add!</button>
+        </fieldset>
       </form>
     </div>
 
@@ -86,6 +89,6 @@
   </footer>
   <script src="js/stores.js"></script>
   <script src="js/locations.js"></script>
-  <script src="js/sales2.js"></script>
+  <script src="js/sales.js"></script>
 </body>
 </html>

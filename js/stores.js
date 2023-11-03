@@ -1,3 +1,7 @@
+const hours     = [
+  '6am','7am','8am','9am','10am','11am','12pm',
+  '1pm','2pm','3pm','4pm','5pm','6pm','7pm'
+];
 let totals = new Array(14);
 totals.fill(0);
 
@@ -43,17 +47,17 @@ Location.prototype.renderTable = function() {
 /* CALCULATE FUNCTION */
 Location.prototype.calculateSales = function (hours) {
   /* MATH FUNCTIONS */
-  for(let hour = 0; hour < hours.length; hour++) {
+  for(let n = 0; n < hours.length; n++) {
     const randomCustomers = Math.floor(
       Math.random() * (this.maxCustomers - this.minCustomers + 1) + this.minCustomers
     );
 
-    const cookiesSold     = Math.ceil(
+    const cookiesSold = Math.ceil(
       randomCustomers * this.avgCookiesPerCustomer
     );
 
     this.cookiesPerHour.push(cookiesSold);
     this.dailyTotals += cookiesSold;
-    totals[hour] += cookiesSold;
+    totals[n] += cookiesSold;
   }
 };
