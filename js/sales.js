@@ -44,7 +44,7 @@ addLocationForm.addEventListener('submit', function (event) {
     name,
     '6 am - 7 pm',
     '',
-    '',
+    'Coming Soon!',
     minCustomers,
     maxCustomers,
     avgCookiesPerCustomer
