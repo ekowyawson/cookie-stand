@@ -1,101 +1,85 @@
 'use strict';
 
-// const cl = (input) => { console.log(input); };
+/* RENDER TABLE FOOTER */
+const renderTableFoot = (totals) => {
+  let footerTotals    = document.getElementById('tfoot-tr');
 
-const seattle = {
-  name: 'Seattle',
-  hoursOpen: '6 am - 7pm',
-  contactInfo: '123-456-7890',
-  location: '2901 3rd Ave #300, Seattle, WA 98121',
-  minCustomers: 23,
-  maxCustomers: 65,
-  avgCookiesPerCustomer: 6.3,
-};
-const tokyo = {
-  name: 'Tokyo',
-  hoursOpen: '6 am - 7pm',
-  contactInfo: '222-222-2222',
-  location: '1 Chrome-1-2 Oshiage, Sumida City, Tokyo 131-8634',
-  minCustomers: 3,
-  maxCustomers: 24,
-  avgCookiesPerCustomer: 1.2,
-};
-const dubai = {
-  name: 'Dubai',
-  hoursOpen: '6 am - 7pm',
-  contactInfo: '333-333-3333',
-  location: 'Sheikh Mohammad bin Rashid Blvd - Dubai',
-  minCustomers: 11,
-  maxCustomers: 38,
-  avgCookiesPerCustomer: 3.7,
-};
-const paris = {
-  name: 'Paris',
-  hoursOpen: '6 am - 7pm',
-  contactInfo: '444-444-4444',
-  location: 'Champ de Mars, 5 Avenue Anatole France, 75007 Paris',
-  minCustomers: 20,
-  maxCustomers: 38,
-  avgCookiesPerCustomer: 2.3,
-};
-const lima = {
-  name: 'Lima',
-  hoursOpen: '6 am - 7pm',
-  contactInfo: '555-555-5555',
-  location: 'Ca. Gral. Borgono cuadra 8, Miraflores 15074',
-  minCustomers: 2,
-  maxCustomers: 16,
-  avgCookiesPerCustomer: 4.6,
-};
-const locations = [seattle, tokyo, dubai, paris, lima];
-const salesList = document.getElementById('sales-list');
-const hours = [
-  '6am',
-  '7am',
-  '8am',
-  '9am',
-  '10am',
-  '11am',
-  '12pm',
-  '1pm',
-  '2pm',
-  '3pm',
-  '4pm',
-  '5pm',
-  '6pm',
-  '7pm'
-];
-
-function generateHourlySales(location) {
-  const hourlySales = [];
-  const locationHeader = document.createElement('h2');
-  const locUl = document.createElement('ul');
-  locationHeader.classList.add('location-header');
-  locationHeader.textContent = location.name;
-  salesList.appendChild(locationHeader);
-
-  hours.forEach(hour => {
-    const randomCustomers = Math.floor(Math.random() * (location.maxCustomers - location.minCustomers + 1) + location.minCustomers);
-    const cookiesSold = Math.ceil(randomCustomers * location.avgCookiesPerCustomer);
-    hourlySales.push(cookiesSold);
-
-    // Display the results on the page
-    const listItem = document.createElement('li');
-    listItem.textContent = `${hour}: ${cookiesSold} cookies`;
-    locUl.appendChild(listItem);
-    salesList.appendChild(locUl);
+  totals.forEach(total => {
+    let footerData         = document.createElement('td');
+    footerData.textContent = total;
+    footerTotals.appendChild(footerData);
   });
 
-  // Calculate and display the total cookies sold for the day
-  const totalCookies = hourlySales.reduce((a, b) => a + b, 0);
-  const totalUl = document.createElement('ul');
-  const totalListItem = document.createElement('li');
-  totalUl.classList.add('total-sales');
-  totalListItem.textContent = `Total: ${totalCookies} cookies`;
-  totalUl.appendChild(totalListItem);
-  salesList.appendChild(totalUl);
-}
+  let sumTotals         = document.createElement('td');
+  sumTotals.textContent = (totals.reduce((a,b)=> a+b, 0));
+  footerTotals.appendChild(sumTotals);
+};
 
+// Loop through each location and generate their hourly sales
 locations.forEach(loc => {
-  generateHourlySales(loc);
+  loc.calculateSales(hours);
+  loc.renderTable();
+});
+
+// Render the footer row of the table
+renderTableFoot(totals);
+
+// ============================ EVENT LISTENER ============================
+// Get DOM elements for event listener
+const addLocationForm = document.getElementById('addLocationForm');
+const footerTotals    = document.getElementById('tfoot-tr');
+
+// The event listener function
+addLocationForm.addEventListener('submit', function (event) {
+  event.preventDefault(); // Prevent the form from submitting and refreshing the page
+
+  // Get user input from the form fields
+  const name                  = document.getElementById('location-name').value;
+  const minCustomers          = parseInt(document.getElementById('min-cust').value);
+  const maxCustomers          = parseInt(document.getElementById('max-cust').value);
+  const avgCookiesPerCustomer = parseFloat(document.getElementById('avg-sale').value);
+
+  // Create a new Location instance with the user input
+  const newLocation           = new Location(
+    name,
+    '6 am - 7 pm',
+    '',
+    'Coming Soon!',
+    minCustomers,
+    maxCustomers,
+    avgCookiesPerCustomer
+  );
+
+  // Add the new location to the locations array
+  locations.push(newLocation);
+
+  // Render the new location's table row.
+  newLocation.calculateSales(hours);
+  newLocation.renderTable();
+
+  // Recalculate and update the totals in the footer
+  totals.fill(0);
+  locations.forEach(loc => {
+    loc.cookiesPerHour.forEach((cookiesSold, index) => {
+      totals[index] += cookiesSold;
+    });
+  });
+
+  // Clear the old footer totals
+  footerTotals.innerHTML = '';
+  const footerTotalsHeading       = document.createElement('td');
+  footerTotalsHeading.textContent = 'Hourly Totals For All Locations';
+  footerTotals.appendChild(footerTotalsHeading);
+
+  // Render the new footer totals
+  totals.forEach(total => {
+    const footerData       = document.createElement('td');
+    footerData.textContent = total;
+    footerTotals.appendChild(footerData);
+  });
+
+  // Calculate and add the sum of the totals
+  const sumTotals       = document.createElement('td');
+  sumTotals.textContent = totals.reduce((a, b) => a + b, 0);
+  footerTotals.appendChild(sumTotals);
 });

@@ -2,10 +2,13 @@
 
 ## Table of Contents
 
-- [Description](#description)
-- [Features](#features)
-- [License](#license)
-- [Lighthouse](#lighthouse)
+- [Cookie Sales Report](#cookie-sales-report)
+  - [Table of Contents](#table-of-contents)
+  - [Description](#description)
+  - [Features](#features)
+  - [Changelog](#changelog)
+  - [License](#license)
+  - [Lighthouse](#lighthouse)
 
 ## Description
 
@@ -18,10 +21,15 @@ It generates hourly sales reports and displays the total cookies sold for each s
 - Calculates the total cookies sold for each store.
 - Displays sales data in a structured format.
 
+## Changelog
+
+- Added event listener to add new store locations and dynamically calculate store data.
+- Broke JavaScript into three different files.
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Lighthouse
 
-!['Lighthouse Image'](img/lighthouse-lab6a.png)
+![Lighthouse Capture](img/lighthouse-lab9.png)
